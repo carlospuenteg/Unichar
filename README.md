@@ -2,7 +2,7 @@
 
 ## Index
 * [Description](#description)
-* [Get Started](#getting-started)
+* [Getting Started](#getting-started)
   * [Install requirements](#install-requirements)
   * [Run the script](#run-the-script)
 
