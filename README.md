@@ -1,4 +1,4 @@
-# Image to Unicode
+# Unichar
 
 ## Index
 * [Description](#description)
