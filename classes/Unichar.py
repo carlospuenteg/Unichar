@@ -25,7 +25,7 @@ class Unichar:
         return self.ord() < 128
 
 
-    def get_blackness(self, img_dim:tuple=(100,100), font_family:str="Helvetica.ttc", font_size:int=100, initial_pos:tuple=(0, 0)) -> int:
+    def get_blackness(self, font_family:str="Helvetica.ttc", img_dim:tuple=(100,100), font_size:int=100, initial_pos:tuple=(0, 0)) -> int:
         img = Image.new('RGB', img_dim, color='black')
 
         d = ImageDraw.Draw(img)
@@ -36,7 +36,7 @@ class Unichar:
         return np.sum(np.array(img))/(np.prod(img_dim)*765)
 
 
-    def get_size(self, img_dim:tuple=(140,140), font_family:str="Helvetica.ttc", font_size:int=100, initial_pos:tuple=(20, 20)) -> int:
+    def get_size(self, font_family:str="Helvetica.ttc", img_dim:tuple=(140,140), font_size:int=100, initial_pos:tuple=(20, 20)) -> int:
         img = Image.new('RGB', img_dim, color='black')
 
         d = ImageDraw.Draw(img)
@@ -64,7 +64,7 @@ class Unichar:
         return ((first["r"]-first["l"]+1)/font_size, (first["b"]-first["t"]+1)/font_size)
 
 
-    def draw(self, img_dim:tuple=(100,100), font_family:str="Helvetica.ttc", font_size:int=100, initial_pos:tuple=(0, 0), background:str="black", font_color:tuple=(255,255,255)):
+    def draw(self, font_family:str="Helvetica.ttc", img_dim:tuple=(140,140), font_size:int=100, initial_pos:tuple=(20, 20), background:str="black", font_color:tuple=(255,255,255)):
         img = Image.new('RGB', img_dim, color=background)
 
         d = ImageDraw.Draw(img)
