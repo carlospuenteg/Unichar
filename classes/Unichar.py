@@ -3,8 +3,18 @@ import numpy as np
 
 class Unichar:
     def __init__(self, char:str):
-        if len(char) != 1: raise Exception("There must be just 1 character")
         self.char = char
+
+
+    @property
+    def char(self) -> str:
+        return self._char
+
+
+    @char.setter
+    def char(self, char:str):
+        if len(char) != 1: raise Exception("There must be just 1 character")
+        self._char = char
 
 
     def ord(self) -> int:
