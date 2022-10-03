@@ -3,9 +3,9 @@ from colorama import Fore, init; init()
 
 try:
 
-    #### Try the class Unichar here! ####
+    #### Try the class Unichar here! #### █
     u = Unichar("a")
-    print(u.get_base_size())
+    print(u.get_size2())
     #####################################
 
 except Exception as e:
