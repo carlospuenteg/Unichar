@@ -44,41 +44,24 @@ class Unichar:
 
         d.text(initial_pos, self.char, font=font, fill=(255, 255, 255))
 
-        # Get the non-black pixel that is more to the left, to the right, to the top and to the bottom
-        first_left = -1
-        first_top = -1
-        first_right = -1
-        first_bottom = -1
-        
-        for i in range(img_dim[0]):
-            for j in range(img_dim[1]):
-                if img.getpixel((i,j)) != (0,0,0):
-                    first_left = i
-                    break
-            if first_left != -1: break
+        # Get the non-black pixel that is more to the top, to the bottom, to the left and to the right
+        first = {"l": -1, "t": -1, "r": -1, "b": -1}
+        ranges = {
+            "l": (range(img_dim[0]), range(img_dim[1]), lambda i, j: (i, j)),
+            "t": (range(img_dim[1]), range(img_dim[0]), lambda i, j: (j, i)),
+            "r": (range(img_dim[0]-1, -1, -1), range(img_dim[1]), lambda i, j: (i, j)),
+            "b": (range(img_dim[1]-1, -1, -1), range(img_dim[0]), lambda i, j: (j, i))
+        }
 
-        for i in range(img_dim[1]):
-            for j in range(img_dim[0]):
-                if img.getpixel((j,i)) != (0,0,0):
-                    first_top = i
-                    break
-            if first_top != -1: break
+        for k in first.keys():
+            for i in ranges[k][0]:
+                for j in ranges[k][1]:
+                    if img.getpixel(ranges[k][2](i,j)) != (0,0,0):
+                        first[k] = i
+                        break
+                if first[k] != -1: break
         
-        for i in range(img_dim[0]-1, -1, -1):
-            for j in range(img_dim[1]):
-                if img.getpixel((i,j)) != (0,0,0):
-                    first_right = i
-                    break
-            if first_right != -1: break
-        
-        for i in range(img_dim[1]-1, -1, -1):
-            for j in range(img_dim[0]):
-                if img.getpixel((j,i)) != (0,0,0):
-                    first_bottom = i
-                    break
-            if first_bottom != -1: break
-
-        return ((first_right-first_left+1)/font_size, (first_bottom-first_top+1)/font_size)
+        return ((first["r"]-first["l"]+1)/font_size, (first["b"]-first["t"]+1)/font_size)
 
 
     def draw(self, img_dim:tuple=(100,100), font_family:str="Helvetica.ttc", font_size:int=100, initial_pos:tuple=(0, 0), background:str="black", font_color:tuple=(255,255,255)):
