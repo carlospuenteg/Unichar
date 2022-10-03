@@ -78,7 +78,6 @@ class Unichar:
                     break
             if first_bottom != -1: break
 
-        print(first_left, first_right, first_top, first_bottom)
         return ((first_right-first_left+1)/font_size, (first_bottom-first_top+1)/font_size)
 
 
