@@ -4,8 +4,8 @@ from colorama import Fore, init; init()
 try:
 
     #### Try the class Unichar here! #### █
-    u = Unichar("a")
-    print(u.get_size2())
+    u = Unichar("█")
+    print(u.get_blackness())
     #####################################
 
 except Exception as e:
